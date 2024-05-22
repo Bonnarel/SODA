@@ -736,12 +736,19 @@ This subsection is an addition of the current specification. The parameters desc
 
 \subsubsection{DPTYPE}
 \label{sec:DPTYPE}
-This optional  parameter allows to modify the product type of the output dataset. Typical case is to reduce a spectral subcube to a 2D image or a spectrum. DPTYPE allowed values are taken from the dataproduct\_type vocabulary. This parameter is binded to the filtering parameters which define the ranges and area in which to sum up the dataset measurements to achive the dimensionality reduction.  
-
-Example - for a spectrum:
+This optional  parameter allows to modify the product type of the output dataset. Typical case is to reduce a spectral subcube to a 2D image or a spectrum. DPTYPE allowed values are taken from the dataproduct\_type vocabulary. This parameter is binded to the filtering parameters which define the ranges and area in which to sum up the dataset measurements to achieve the dimensionality reduction. 
 \begin{lstlisting}
 DPTYPE="spectrum"&POS=POLYGON 50.5 27.2 50.7 27.2 50.7 27.6 50.5 27.6
 \end{lstlisting}
+
+For a cube, SODA operation above  will sum up all spectra inside the spatial coverage, while the same query parameters with DPTYPE=cube (which is the default) will produce a cube spatial cutout. In the case of dimensionality reduction the corresponding resolution transform parameter MUST be ignored.
+
+\begin{lstlisting}
+DPTYPE="image"&BAND=0.1 0.4
+\end{lstlisting}
+For a cube, SODA operation above will sum up all channels inside the spectral bounds, while the same query parameters with DPTYPE=cube will produce a cube spectral cutout.  
+
+In the case of dimensionality reduction the corresponding appropriate resolution transform parameter (SPATRES,SPECRP) MUST be ignored.
 
 \subsubsection{SPATRES}
 
