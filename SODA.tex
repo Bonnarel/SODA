@@ -424,7 +424,7 @@ RESPONSEFORMAT="image/png"
 \end{lstlisting}
 \item Conversion of one or several FITS images or cubes to HiPS format. 
 \begin{lstlisting}
-RESPONSEFORMAT="application/HiPS"
+RESPONSEFORMAT="application/hips"
 \end{lstlisting}
 \item And the reverse conversion: 
 \begin{lstlisting}
@@ -434,8 +434,9 @@ RESPONSEFORMAT="application/fits"
 
 The format conversion can be done in combination with the filtering or the transformation described below. When a conversion is not made available by the service or is  impossible the service MUST answer by an error message stating "Format transformation not available". By default there will be no format conversion.
 
-\subsubsection{METADATA}
-\label{sec:METADATA}
+Conversion to the hips format requires the transformation from any sky projection to HPX. Any other provided PROJECTION value MUST be ignored. In the same conversion to hips case, the  SODA response provides the URL to the top of the HiPS directory.
+
+\subsubsection{METADATA}\label{sec:METADATA}
 This optional parameter allows to provide dataset metadata instead of an excerpt of the dataset itself. It allows to retrieve the metadata consistent with a specific   datamodel given by its standardID or a FITS header for the "headder" value.  All SODA service MUST be able to provide at least the Obscore metadata. Other datamodels are possible.
 
 This parameter can be used in combination with filtering or transformation parameters in such a way that the metadata describe the filtered or transformed dataset.
@@ -709,7 +710,8 @@ The UCD  describing the POL parameter is
 \subsubsection{PIXELS}
 \label{sec:PIXELS}
 The PIXELS parameter defines a subpart of the dataset to be extracted following the fitsio syntax. 
-It is also possible to extract only every pixel upon n.\\
+It is also possible to extract only every pixel upon n. Supporting PIXELS in the same query with spatial, spectral or time filtering
+parameters is optional and SHOULD be interpreted within the scope of PARAMETER multiplicity\\
 Examples :
 
 \begin{itemize}
